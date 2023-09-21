@@ -11,24 +11,20 @@ function onFormSubmit(event) {
 
   let emptyInputs = Array.from(refs.formInputs).filter((input) => input.value === "");
 
-  refs.formInputs.forEach(function (input) {
-    if (input.value.length !== 0) {
-      // return {
-      //   name: input.name,
-      //   value: input.value,
-      // };
-
-      console.log({
-        name: input.name,
-        value: input.value,
-      });
-    }
-  });
-
   if (emptyInputs.length !== 0) {
     alert("inputs not filled");
     return false;
   }
+
+  const formData = new FormData(refs.form);
+
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  console.log({
+    email,
+    password,
+  });
 
   refs.form.reset();
 }
